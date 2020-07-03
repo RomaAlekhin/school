@@ -1,32 +1,37 @@
 <template>
-    <div id="app">
-        <div id="nav">
-            <router-link to="/">Home</router-link> |
-            <router-link to="/about">About</router-link>
-        </div>
-        <router-view />
-    </div>
+  <v-app>
+    <app-bar />
+
+    <v-content>
+      <router-view />
+    </v-content>
+
+    <app-bottom-navigation v-if="isAuthenticated" />
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-}
+<script>
+// const AppBar = () => import("./components/AppBar");
+import AppBar from "./components/AppBar";
+// const AppBottomNavigation = () => import("./components/AppBottomNavigation");
+import AppBottomNavigation from "./components/AppBottomNavigation";
 
-#nav {
-    padding: 30px;
+export default {
+  name: "App",
 
-    a {
-        font-weight: bold;
-        color: #2c3e50;
+  components: {
+    AppBar,
+    AppBottomNavigation
+  },
 
-        &.router-link-exact-active {
-            color: #42b983;
-        }
+  data() {
+    return {};
+  },
+
+  computed: {
+    isAuthenticated() {
+      return this.$store.state.isAuthenticated;
     }
-}
-</style>
+  }
+};
+</script>
