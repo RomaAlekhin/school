@@ -1,0 +1,7 @@
+{
+    "scripts": {
+        "serve": "cd resources/js && npm run serve",
+        "build": "cd resources/js && npm run build",
+        "lint": "cd resources/js && npm run lint"
+    }
+}
