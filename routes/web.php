@@ -13,4 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/test', 'HomeController@index');
 Route::get('/{any}', 'SpaController@index')->where('any', '.*');
