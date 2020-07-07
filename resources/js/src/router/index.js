@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+
 import Main from "@/views/Main";
+import Home from "@/views/Home";
 import Login from "@/views/Login";
 import Lessons from "@/views/Lessons";
 import Profile from "@/views/Profile";
@@ -16,6 +18,11 @@ const routes = [
     name: "Main",
     component: Main,
     children: [
+      {
+        path: "/",
+        name: "Home",
+        component: Home
+      },
       {
         path: "lessons",
         name: "Lessons",

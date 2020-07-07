@@ -1,8 +1,12 @@
 module.exports = {
   transpileDependencies: ["vuetify"],
-  // proxy API requests to Valet during development
   devServer: {
-    proxy: "http://localhost:8000"
+    proxy: {
+      "^/api": {
+        target: "http://localhost:8000",
+        changeOrigin: true
+      }
+    }
   },
 
   // output built static files to Laravel's public dir.
