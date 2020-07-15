@@ -1,12 +1,7 @@
 module.exports = {
   transpileDependencies: ["vuetify"],
   devServer: {
-    proxy: {
-      "^/api": {
-        target: "http://localhost:8000",
-        changeOrigin: true
-      }
-    }
+    host: "app.school.test"
   },
 
   // output built static files to Laravel's public dir.

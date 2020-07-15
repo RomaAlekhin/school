@@ -3,5 +3,15 @@
         "serve": "cd resources/js && npm run serve",
         "build": "cd resources/js && npm run build",
         "lint": "cd resources/js && npm run lint"
+    },
+    "devDependencies": {
+        "bootstrap": "^4.0.0",
+        "jquery": "^3.2",
+        "popper.js": "^1.12",
+        "resolve-url-loader": "^2.3.1",
+        "sass": "^1.20.1",
+        "sass-loader": "^8.0.0",
+        "vue": "^2.5.17",
+        "vue-template-compiler": "^2.6.10"
     }
 }

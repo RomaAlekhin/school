@@ -2,9 +2,9 @@
   <v-app>
     <app-bar />
 
-    <v-content>
+    <v-main>
       <router-view />
-    </v-content>
+    </v-main>
 
     <app-bottom-navigation v-if="isAuthenticated" />
   </v-app>
@@ -30,7 +30,7 @@ export default {
 
   computed: {
     isAuthenticated() {
-      return this.$store.state.isAuthenticated;
+      return this.$store.state.auth.isAuthenticated;
     }
   }
 };

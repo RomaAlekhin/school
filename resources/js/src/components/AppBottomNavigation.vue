@@ -1,23 +1,8 @@
 <template>
   <v-bottom-navigation app v-model="bottomNav" dark shift>
-    <v-btn to="/">
-      <span>Главная</span>
-      <v-icon>mdi-home</v-icon>
-    </v-btn>
-
-    <v-btn to="lessons">
-      <span>Занятия</span>
-      <v-icon>mdi-book-open-page-variant</v-icon>
-    </v-btn>
-
-    <v-btn to="message">
-      <span>Сообщения</span>
-      <v-icon>mdi-message</v-icon>
-    </v-btn>
-
-    <v-btn to="profile">
-      <span>Профиль</span>
-      <v-icon>mdi-account</v-icon>
+    <v-btn v-for="(link, i) in links" :key="i" :to="link.to">
+      <span>{{ link.title }}</span>
+      <v-icon>{{ link.icon }}</v-icon>
     </v-btn>
   </v-bottom-navigation>
 </template>
@@ -26,10 +11,25 @@
 export default {
   name: "AppBottomNavigation",
 
-  data() {
-    return {
-      bottomNav: null
-    };
+  data: () => ({
+    bottomNav: null,
+    links: [
+      { title: "Главная", to: "/", icon: "mdi-home" },
+      { title: "Занятия", to: "/lessons", icon: "mdi-book-open-page-variant" },
+      { title: "Сообщения", to: "/message", icon: "mdi-message" },
+      { title: "Профиль", to: "/profile", icon: "mdi-account" }
+    ]
+  }),
+
+  created() {
+    this.setBottomNav();
+  },
+
+  methods: {
+    setBottomNav() {
+      const path = this.$route.path;
+      this.bottomNav = this.links.findIndex(link => link.to === path);
+    }
   }
 };
 </script>

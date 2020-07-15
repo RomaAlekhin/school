@@ -1,27 +1,11 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import auth from "./auth";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-    isAuthenticated: true //false
-  },
-  mutations: {
-    signIn(store, payload) {
-      store.isAuthenticated = true;
-      store.user = payload;
-    }
-  },
-  actions: {
-    signIn({ commit }, payload = {}) {
-      return new Promise(resolve => {
-        const { login, password } = payload;
-        console.log(login, password);
-        commit("signIn", { userName: "test" });
-        return resolve();
-      });
-    }
-  },
-  modules: {}
+  modules: {
+    auth
+  }
 });

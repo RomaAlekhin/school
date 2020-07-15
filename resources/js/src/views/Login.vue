@@ -1,54 +1,72 @@
 <template>
-  <v-container>
+  <v-main>
     <v-row justify="center">
       <v-col cols="10" md="8" lg="6">
         <v-card ref="form">
+          <v-card-title>Авторизация</v-card-title>
           <v-card-text>
             <v-text-field
-              v-model="login"
-              label="Логин"
-              placeholder="John Doe"
-              required
-            ></v-text-field>
+              v-model="form.email"
+              type="email"
+              name="email"
+              label="Email"
+              prepend-icon="mdi-account"
+            />
+
             <v-text-field
-              v-model="password"
+              v-model="form.password"
               :append-icon="isShowPass ? 'mdi-eye' : 'mdi-eye-off'"
               :type="isShowPass ? 'text' : 'password'"
+              name="password"
               label="Пароль"
+              prepend-icon="mdi-lock"
               @click:append="isShowPass = !isShowPass"
-            ></v-text-field>
+            />
           </v-card-text>
           <v-card-actions class="justify-center">
-            <v-btn color="primary" @click="signIn">Войти</v-btn>
+            <v-btn
+              :loading="isLoading"
+              :disabled="isLoading"
+              color="primary"
+              @click="submit"
+              >Войти</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
-  </v-container>
+  </v-main>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "Login",
 
-  data() {
-    return {
-      isShowPass: false,
-      login: "",
+  data: () => ({
+    isLoading: false,
+    isShowPass: false,
+    form: {
+      email: "",
       password: ""
-    };
-  },
+    }
+  }),
 
   methods: {
-    signIn() {
-      const { login, password } = this;
-      this.$store
-        .dispatch("signIn", { login, password })
-        .then(() => {
-          const { redirect = "/" } = this.$route.query;
-          this.$router.push(redirect);
-        })
-        .catch(error => alert(error));
+    ...mapActions({
+      signIn: "auth/signIn"
+    }),
+
+    async submit() {
+      this.isLoading = true;
+      try {
+        await this.signIn(this.form);
+        this.isLoading = false;
+        this.$router.push({ name: "Lessons" });
+      } catch (err) {
+        this.isLoading = false;
+      }
     }
   }
 };

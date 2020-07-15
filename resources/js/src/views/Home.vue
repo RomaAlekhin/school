@@ -1,9 +1,9 @@
 <template>
   <div>
     Home
-    <div>
-      Products: <br />
-      <pre>{{ this.products }}</pre>
+    <div v-if="isAuthenticated">Logged as: {{ userEmail }}</div>
+    <div v-if="products">
+      {{ products }}
     </div>
   </div>
 </template>
@@ -13,17 +13,28 @@ export default {
   name: "Home",
 
   data: () => ({
-    products: []
+    products: null
   }),
 
-  async created() {
-    this.products = await axios
-      .get("products", {
-        params: {
-          page: 1
-        }
-      })
-      .then(response => response.data);
+  computed: {
+    isAuthenticated() {
+      return this.$store.state.auth.isAuthenticated;
+    },
+
+    userEmail() {
+      return this.$store.state.auth.user.email;
+    }
+  },
+
+  created() {
+    this.getProducts();
+  },
+
+  methods: {
+    async getProducts() {
+      const response = await axios.get("products");
+      this.products = response.data;
+    }
   }
 };
 </script>
