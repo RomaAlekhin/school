@@ -14,8 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{any}', 'SpaController@index')->where('any', '.*');
+Route::domain('{app}.school.test')->group(function () {
+	Route::get('/{any}', 'SpaController@index')->where('any', '.*');
+});
 
-Auth::routes();
+Route::get('/home', 'HomeController@index');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes([
+	'register' => true,
+	'verify' => false,
+	'reset' => false
+]);

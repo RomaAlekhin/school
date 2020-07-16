@@ -42,17 +42,18 @@ export default {
       await axios.get("../sanctum/csrf-cookie");
       await axios.post("../login", credentials);
 
-      // axios.defaults.headers.common[
-      //   "Authorization"
-      // ] = `Bearer ${response.token}`;
-
       return dispatch("me");
     },
 
     async signOut({ dispatch }) {
       await axios.post("../logout");
 
-      // axios.defaults.headers.common["Authorization"] = null;
+      return dispatch("me");
+    },
+
+    async register({ dispatch }, credentials) {
+      await axios.get("../sanctum/csrf-cookie");
+      await axios.post("../register", credentials);
 
       return dispatch("me");
     },

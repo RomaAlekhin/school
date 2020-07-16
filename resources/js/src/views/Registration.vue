@@ -14,8 +14,24 @@
         </v-alert>
 
         <v-card ref="form" :elevation="5" :loading="isLoading">
-          <v-card-title>Авторизация</v-card-title>
+          <v-card-title>Регистрация</v-card-title>
           <v-card-text>
+            <v-text-field
+              v-model="form.name"
+              type="text"
+              name="name"
+              label="Имя"
+              prepend-icon="mdi-account"
+            />
+
+            <v-text-field
+              v-model="form.surname"
+              type="text"
+              name="surname"
+              label="Фамилия"
+              prepend-icon="mdi-account"
+            />
+
             <v-text-field
               v-model="form.email"
               type="email"
@@ -33,12 +49,19 @@
               prepend-icon="mdi-lock"
               @click:append="isShowPass = !isShowPass"
             />
+            <v-text-field
+              v-model="form.password_confirmation"
+              :append-icon="isShowPass ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="isShowPass ? 'text' : 'password'"
+              name="password_confirmation"
+              label="Подтвердите пароль"
+              prepend-icon="mdi-lock"
+              @click:append="isShowPass = !isShowPass"
+            />
           </v-card-text>
 
           <v-card-actions>
-            <router-link to="registration">Регистрация</router-link>
-            <v-spacer />
-            <router-link to="registration">Восстановить пароль</router-link>
+            <router-link to="login">Войти</router-link>
           </v-card-actions>
 
           <v-card-actions class="justify-center">
@@ -49,7 +72,7 @@
               :disabled="isLoading"
               color="primary"
               @click="submit"
-              >Войти</v-btn
+              >Регистрация</v-btn
             >
           </v-card-actions>
         </v-card>
@@ -62,21 +85,24 @@
 import { mapActions } from "vuex";
 
 export default {
-  name: "Login",
+  name: "Registration",
 
   data: () => ({
     errorMessage: "",
     isLoading: false,
     isShowPass: false,
     form: {
+      name: "",
+      surname: "",
       email: "",
-      password: ""
+      password: "",
+      password_confirmation: ""
     }
   }),
 
   methods: {
     ...mapActions({
-      signIn: "auth/signIn"
+      register: "auth/register"
     }),
 
     async submit() {
@@ -84,12 +110,14 @@ export default {
       this.isLoading = true;
 
       try {
-        await this.signIn(this.form);
+        await this.register(this.form);
         this.isLoading = false;
         this.$router.push({ name: "Lessons" });
       } catch (error) {
         this.isLoading = false;
         const errors = error.response.data.errors;
+        if (!errors) return false;
+
         const key = Object.keys(errors)[0];
         this.errorMessage = errors[key][0];
       }

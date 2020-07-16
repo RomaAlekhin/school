@@ -3,7 +3,9 @@
     <app-bar />
 
     <v-main>
-      <router-view />
+      <transition name="fade-transition" mode="out-in">
+        <router-view />
+      </transition>
     </v-main>
 
     <app-bottom-navigation v-if="isAuthenticated" />
@@ -22,10 +24,6 @@ export default {
   components: {
     AppBar,
     AppBottomNavigation
-  },
-
-  data() {
-    return {};
   },
 
   computed: {

@@ -2,10 +2,12 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import Home from "@/views/Home";
-import Login from "@/views/Login";
 import Lessons from "@/views/Lessons";
 import Profile from "@/views/Profile";
 import Message from "@/views/Message";
+
+import Login from "@/views/Login";
+import Registration from "@/views/Registration";
 
 import store from "@/store";
 
@@ -47,7 +49,7 @@ const routes = [
   {
     path: "/registration",
     name: "Registration",
-    component: Login,
+    component: Registration,
     meta: { requiresVisitor: true }
   },
 
@@ -68,27 +70,8 @@ const router = new VueRouter({
   routes
 });
 
-// router.beforeEach((to, from, next) => {
-//   if (to.path === "/login") return next();
-
-//   const isAuthenticated = store.state.auth.isAuthenticated;
-//   if (!isAuthenticated) {
-//     let redirect = to.fullPath;
-//     if (redirect === "/") redirect = "/lessons";
-
-//     next({
-//       name: "Login",
-//       query: { redirect }
-//     });
-//   } else {
-//     next();
-//   }
-// });
-
 router.beforeEach((to, from, next) => {
   const isAuthenticated = store.state.auth.isAuthenticated;
-  console.log(to);
-  console.log(from);
 
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!isAuthenticated) {
