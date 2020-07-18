@@ -58,6 +58,19 @@ export default {
       return dispatch("me");
     },
 
+    checkAuth({ commit }) {
+      return axios
+        .get("check_auth")
+        .then(response => {
+          commit("SET_AUTHENTICATED", true);
+          commit("SET_USER", response.data);
+        })
+        .catch(() => {
+          commit("SET_AUTHENTICATED", false);
+          commit("SET_USER", null);
+        });
+    },
+
     me({ commit }) {
       return axios
         .get("user")

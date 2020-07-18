@@ -18,7 +18,7 @@ Route::domain('{app}.school.test')->group(function () {
 	Route::get('/{any}', 'SpaController@index')->where('any', '.*');
 });
 
-Route::get('/home', 'HomeController@index');
+Auth::check();
 
 Auth::routes([
 	'register' => true,
