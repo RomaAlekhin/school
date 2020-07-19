@@ -1,9 +1,10 @@
 <template>
   <v-card class="ma-2">
     <v-skeleton-loader :loading="isLoading" type="list-item">
-      <v-expansion-panels>
+      <v-expansion-panels :value="1">
         <v-expansion-panel v-for="lesson in lessons" :key="lesson.id">
           <v-expansion-panel-header>{{ lesson.date }}</v-expansion-panel-header>
+
           <v-expansion-panel-content>
             <LessonsHomework :lesson="lesson" />
           </v-expansion-panel-content>
@@ -30,27 +31,20 @@ export default {
   }),
 
   created() {
-    this.loadLessons();
+    this.setLoadedLessons();
   },
 
   methods: {
-    loadLessons() {
+    async setLoadedLessons() {
       this.isLoading = true;
-      return new Promise(resolve => {
-        setTimeout(() => {
-          this.lessons = [
-            { id: 1, date: "01.07.2020" },
-            { id: 2, date: "08.07.2020" }
-          ];
-          this.isLoading = false;
-          return resolve();
-        }, 1000);
-      });
-    },
 
-    setLesson(id) {
-      console.log(id);
-      this.currentLesson = this.lessons.find(lesson => id == lesson.id);
+      try {
+        const response = await axios.get("lesson");
+        this.lessons = response.data;
+        this.isLoading = false;
+      } catch (error) {
+        this.isLoading = false;
+      }
     }
   }
 };

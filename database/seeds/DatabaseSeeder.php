@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
             GroupScheduleSeeder::class,
             GroupStudentSeeder::class,
             LessonSeeder::class,
-            LessonStudentSeeder::class,
         ]);
     }
 }

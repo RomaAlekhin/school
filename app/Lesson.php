@@ -15,9 +15,4 @@ class Lesson extends Model
     {
         return $this->hasOne('App\Group');
     }
-
-    public function students()
-    {
-        return $this->belongsToMany('App\Students');
-    }
 }

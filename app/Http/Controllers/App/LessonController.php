@@ -4,6 +4,7 @@ namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LessonController extends Controller
 {
@@ -14,7 +15,17 @@ class LessonController extends Controller
      */
     public function index()
     {
-        //
+        $groups = Auth::user()->typeable->groups;
+        $lessons = collect();
+
+        if (!empty($groups)) {
+            foreach ($groups as $group) {
+                $lessons = $lessons->merge($group->lessons);
+            }
+        };
+
+
+        return $lessons->sortBy('date')->slice(-2);
     }
 
     /**
