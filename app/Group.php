@@ -10,4 +10,19 @@ class Group extends Model
     {
         return $this->hasOne('App\Teacher');
     }
+
+    public function students()
+    {
+        return $this->belongsToMany('App\Student');
+    }
+
+    public function schedules()
+    {
+        return $this->hasMany('App\GroupSchedule');
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany('App\Lesson');
+    }
 }

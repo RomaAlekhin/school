@@ -33,8 +33,6 @@ export default {
   methods: {
     async getProducts() {
       const response = await axios.get("me");
-      await axios.get("user");
-      await axios.get("user/1");
       this.products = response.data;
     }
   }

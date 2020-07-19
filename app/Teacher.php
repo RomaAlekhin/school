@@ -14,4 +14,9 @@ class Teacher extends Model
     {
         return $this->hasMany('App\Group');
     }
+
+    public function lesson()
+    {
+        return $this->hasOneThrough('App\Lesson', 'App\Group');
+    }
 }

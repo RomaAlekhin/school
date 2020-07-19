@@ -1,5 +1,6 @@
 <?php
 
+use App\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -18,9 +19,11 @@ Route::get('check_auth', function () {
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
-
 	Route::get('me', 'UserController@me');
-	// Route::get('lesson', 'LessonController@index');
-	// Route::get('user', 'App\UserController@index');
-	// Route::get('user/{id}', 'App\UserController@show');
+
+	Route::get('lesson', 'App\LessonController@index');
+	Route::get('lesson/{id}', 'App\LessonController@show');
+
+	Route::get('user', 'App\UserController@index');
+	Route::get('user/{id}', 'App\UserController@show');
 });

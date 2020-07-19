@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::domain('{app}.*')->group(function () {
+Route::domain('app.*')->group(function () {
 	Route::get('/{any}', 'SpaController@index')->where('any', '.*');
 });
 

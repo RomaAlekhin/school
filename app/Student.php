@@ -9,4 +9,14 @@ class Student extends Model
     protected $fillable = ['age', 'parent_name'];
 
     protected $hidden = ['id', 'created_at', 'updated_at'];
+
+    public function groups()
+    {
+        return $this->belongsToMany('App\Group');
+    }
+
+    public function lessons()
+    {
+        return $this->belongsToMany('App\Lesson');
+    }
 }
