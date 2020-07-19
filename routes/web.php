@@ -14,14 +14,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::domain('{app}.school.test')->group(function () {
+Route::domain('{app}.*')->group(function () {
 	Route::get('/{any}', 'SpaController@index')->where('any', '.*');
 });
 
-Auth::check();
+Route::group(['prefix' => 'teacher'], function () {
+	Auth::routes([
+		'register' => true,
+		'verify' => true,
+		'reset' => false
+	]);
+});
 
-Auth::routes([
-	'register' => true,
-	'verify' => false,
-	'reset' => false
-]);
+// Route::group(['prefix' => 'admin'], function () {
+// 	Auth::routes([
+// 		'register' => false,
+// 		'verify' => true,
+// 		'reset' => false
+// 	]);
+
+// 	Route::get('user', 'UserController@index');
+// 	Route::get('user/{id}', 'UserController@show');
+// });
+
+// Route::get('/', 'HomeController@index');
+// Route::get('/home', 'HomeController@index');

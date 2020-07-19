@@ -15,19 +15,3 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('user', function (Request $request) {
-        return $request->user();
-    });
-
-    Route::get('name', function (Request $request) {
-        return response()->json(['name' => $request->user()->name]);
-    });
-});
-
-Route::get('check_auth', function () {
-    $isAuthenticated = Auth::check();
-    $status = $isAuthenticated ? 200 : 401;
-    return response()->json([], $status);
-});

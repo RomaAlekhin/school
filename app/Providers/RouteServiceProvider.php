@@ -42,6 +42,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
+        $this->mapAppRoutes();
+
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
@@ -76,5 +78,18 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/api.php'));
+    }
+
+    /**
+     * Define the "app" routes for the student application.
+     *
+     * @return void
+     */
+    protected function mapAppRoutes()
+    {
+        Route::prefix('app')
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/app.php'));
     }
 }

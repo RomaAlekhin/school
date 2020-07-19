@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -54,7 +57,40 @@ class RegisterController extends Controller
             'surname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'type' => ['required', 'string', 'max:255']
         ]);
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $data = $request->all();
+        $data['type'] = null;
+
+        if ($request->is('app*')) {
+            $data['type'] = 'student';
+        } else if ($request->is('teacher*')) {
+            $data['type'] = 'teacher';
+        }
+
+        $this->validator($data)->validate();
+
+        event(new Registered($user = $this->create($data)));
+
+        $this->guard()->login($user);
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new Response('', 201)
+            : redirect($this->redirectPath());
     }
 
     /**
@@ -65,11 +101,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $type = '\\App\\' . ucfirst($data['type']);
+        $typeable = $type::create($data); // Doctor::create()
+
         return User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'type' => $data['type'],
+            'typeable_id' => $typeable->id,
+            'typeable_type' => get_class($typeable),
         ]);
     }
 }
