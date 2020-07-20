@@ -1,8 +1,11 @@
 {
     "scripts": {
-        "serve": "cd frontend/student && npm run serve",
-        "build": "cd frontend/student && npm run build",
-        "lint": "cd frontend/student && npm run lint",
+        "serve": "npm run serve:student",
+        "build": "npm run build:student",
+        "lint": "npm run lint:student",
+        "serve:all": "npm run serve:student && npm run serve:teacher",
+        "build:all": "npm run build:student && npm run build:teacher",
+        "lint:all": "npm run lint:student && npm run lint:teacher",
         "serve:student": "cd frontend/student && npm run serve",
         "build:student": "cd frontend/student && npm run build",
         "lint:student": "cd frontend/student && npm run lint",

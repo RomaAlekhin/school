@@ -61,10 +61,7 @@ export default {
     checkAuth({ commit }) {
       return axios
         .get("check_auth")
-        .then(response => {
-          commit("SET_AUTHENTICATED", true);
-          commit("SET_USER", response.data);
-        })
+        .then(() => {})
         .catch(() => {
           commit("SET_AUTHENTICATED", false);
           commit("SET_USER", null);
