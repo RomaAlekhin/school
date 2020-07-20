@@ -6,8 +6,27 @@ use Illuminate\Http\Request;
 
 class SpaController extends Controller
 {
-    public function index()
+    public function index($type)
     {
-        return view('index');
+        if (method_exists($this, $type)) {
+            return $this->$type();
+        }
+
+        return abort(404);
+    }
+
+    public function student()
+    {
+        return view('student');
+    }
+
+    public function teacher()
+    {
+        return view('teacher');
+    }
+
+    public function admin()
+    {
+        return view('admin');
     }
 }

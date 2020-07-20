@@ -14,17 +14,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::domain('app.*')->group(function () {
+// Route::domain('student.*')->group(function () {
+// 	Route::get('/{any}', 'SpaController@student')->where('any', '.*');
+// });
+
+// Route::domain('student.school.test')->group(function () {
+// 	Route::get('/{any}', 'SpaController@student')->where('any', '.*');
+// });
+
+// Route::domain('teacher.school.test')->group(function () {
+// 	Route::get('/{any}', 'SpaController@teacher')->where('any', '.*');
+// });
+
+// Route::domain('admin.school.test')->group(function () {
+// 	Route::get('/{any}', 'SpaController@admin')->where('any', '.*');
+// });
+
+Route::domain('{type}.school.test')->group(function () {
+	// return response("123", 200);
 	Route::get('/{any}', 'SpaController@index')->where('any', '.*');
 });
 
-Route::group(['prefix' => 'teacher'], function () {
-	Auth::routes([
-		'register' => true,
-		'verify' => true,
-		'reset' => false
-	]);
-});
+// Route::group(['prefix' => 'teacher'], function () {
+// 	Auth::routes([
+// 		'register' => true,
+// 		'verify' => true,
+// 		'reset' => false
+// 	]);
+// });
 
 // Route::group(['prefix' => 'admin'], function () {
 // 	Auth::routes([

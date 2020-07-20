@@ -1,17 +1,16 @@
 {
     "scripts": {
-        "serve": "cd resources/js && npm run serve",
-        "build": "cd resources/js && npm run build",
-        "lint": "cd resources/js && npm run lint"
-    },
-    "devDependencies": {
-        "bootstrap": "^4.0.0",
-        "jquery": "^3.2",
-        "popper.js": "^1.12",
-        "resolve-url-loader": "^2.3.1",
-        "sass": "^1.20.1",
-        "sass-loader": "^8.0.0",
-        "vue": "^2.5.17",
-        "vue-template-compiler": "^2.6.10"
+        "serve": "cd frontend/student && npm run serve",
+        "build": "cd frontend/student && npm run build",
+        "lint": "cd frontend/student && npm run lint",
+        "serve:student": "cd frontend/student && npm run serve",
+        "build:student": "cd frontend/student && npm run build",
+        "lint:student": "cd frontend/student && npm run lint",
+        "serve:teacher": "cd frontend/teacher && npm run serve",
+        "build:teacher": "cd frontend/teacher && npm run build",
+        "lint:teacher": "cd frontend/teacher && npm run lint",
+        "serve:admin": "cd frontend/admin && npm run serve",
+        "build:admin": "cd frontend/admin && npm run build",
+        "lint:admin": "cd frontend/admin && npm run lint"
     }
 }
