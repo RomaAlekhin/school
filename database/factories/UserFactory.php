@@ -17,9 +17,24 @@ use Illuminate\Support\Str;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(App\User::class, function (Faker $faker) {
+    $typeables = [
+        ['type' => 'student', 'class' => App\Models\Student::class],
+        ['type' => 'teacher', 'class' => App\Models\Teacher::class],
+    ];
+
+    $typeableItem = $faker->randomElement($typeables);
+    $type = $typeableItem['type'];
+    $class = $typeableItem['class'];
+
+    $typeable = factory($class)->create();
+
     return [
+        'typeable_type' => $class,
+        'typeable_id' => $typeable->id,
         'name' => $faker->name,
+        'surname' => $faker->name,
+        'type' => $type,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password

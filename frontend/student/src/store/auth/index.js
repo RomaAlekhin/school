@@ -47,8 +47,7 @@ export default {
 
     async signOut({ dispatch }) {
       await axios.post("logout");
-
-      return dispatch("me");
+      return dispatch("checkAuth");
     },
 
     async register({ dispatch }, credentials) {

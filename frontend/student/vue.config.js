@@ -3,7 +3,7 @@ const TYPE = "student";
 module.exports = {
   transpileDependencies: ["vuetify"],
   devServer: {
-    host: `${TYPE}.school.test`,
+    host: `${TYPE}.school.test`
   },
 
   // output built static files to Laravel's public dir.
@@ -17,5 +17,5 @@ module.exports = {
   indexPath:
     process.env.NODE_ENV === "production"
       ? `../resources/views/${TYPE}.blade.php`
-      : "index.html",
+      : "index.html"
 };

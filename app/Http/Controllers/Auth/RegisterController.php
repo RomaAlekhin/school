@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Student;
+use App\Models\Teacher;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Auth\Events\Registered;
@@ -72,7 +74,7 @@ class RegisterController extends Controller
         $data = $request->all();
         $data['type'] = null;
 
-        if ($request->is('app*')) {
+        if ($request->is('student*')) {
             $data['type'] = 'student';
         } else if ($request->is('teacher*')) {
             $data['type'] = 'teacher';
@@ -101,8 +103,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $type = '\\App\\' . ucfirst($data['type']);
-        $typeable = $type::create($data); // Doctor::create()
+        $typeables = [
+            'student' => Student::class,
+            'teacher' => Teacher::class,
+        ];
+        $typeableClass = $typeables[$data['type']];
+        $typeable = $typeableClass::create($data); // Student::create()
 
         return User::create([
             'name' => $data['name'],
@@ -111,7 +117,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'type' => $data['type'],
             'typeable_id' => $typeable->id,
-            'typeable_type' => get_class($typeable),
+            'typeable_type' => $typeableClass,
         ]);
     }
 }

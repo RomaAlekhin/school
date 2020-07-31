@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\App;
+namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -23,7 +23,6 @@ class LessonController extends Controller
                 $lessons = $lessons->merge($group->lessons);
             }
         };
-
 
         return $lessons->sortBy('date')->slice(-2);
     }

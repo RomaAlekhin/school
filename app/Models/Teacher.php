@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,11 +12,11 @@ class Teacher extends Model
 
     public function groups()
     {
-        return $this->hasMany('App\Group');
+        return $this->hasMany('App\Models\Group');
     }
 
     public function lesson()
     {
-        return $this->hasOneThrough('App\Lesson', 'App\Group');
+        return $this->hasOneThrough('App\Models\Lesson', 'App\Models\Group');
     }
 }

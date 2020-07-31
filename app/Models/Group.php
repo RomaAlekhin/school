@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,21 +8,21 @@ class Group extends Model
 {
     public function teacher()
     {
-        return $this->hasOne('App\Teacher');
+        return $this->hasOne('App\Models\Teacher');
     }
 
     public function students()
     {
-        return $this->belongsToMany('App\Student');
+        return $this->belongsToMany('App\Models\Student');
     }
 
     public function schedules()
     {
-        return $this->hasMany('App\GroupSchedule');
+        return $this->hasMany('App\Models\GroupSchedule');
     }
 
     public function lessons()
     {
-        return $this->hasMany('App\Lesson');
+        return $this->hasMany('App\Models\Lesson');
     }
 }

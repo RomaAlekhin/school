@@ -30,6 +30,21 @@ export default {
     isAuthenticated() {
       return this.$store.state.auth.isAuthenticated;
     }
+  },
+
+  created() {
+    this.getUsers();
+    this.getUser();
+  },
+
+  methods: {
+    async getUsers() {
+      await axios.get("user");
+    },
+
+    async getUser() {
+      await axios.get("user/2");
+    }
   }
 };
 </script>

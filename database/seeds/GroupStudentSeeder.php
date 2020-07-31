@@ -1,7 +1,7 @@
 <?php
 
+use App\Models\GroupStudent;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class GroupStudentSeeder extends Seeder
 {
@@ -12,14 +12,6 @@ class GroupStudentSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('group_student')->insert([
-            'student_id' => 1,
-            'group_id' => 1
-        ]);
-
-        DB::table('group_student')->insert([
-            'student_id' => 1,
-            'group_id' => 2
-        ]);
+        factory(GroupStudent::class, 150)->create();
     }
 }

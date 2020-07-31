@@ -14,7 +14,7 @@ class CreateGroupStudentTable extends Migration
     public function up()
     {
         Schema::create('group_student', function (Blueprint $table) {
-            $table->id();
+
             $table->unsignedBigInteger('group_id');
             $table->unsignedBigInteger('student_id');
 
@@ -23,7 +23,7 @@ class CreateGroupStudentTable extends Migration
             $table->foreign('student_id')->references('id')->on('students')
                 ->onDelete('cascade');
 
-            $table->timestamps();
+            $table->unique(['group_id', 'student_id']);
         });
     }
 

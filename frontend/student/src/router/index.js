@@ -4,7 +4,7 @@ import VueRouter from "vue-router";
 import Home from "@/views/Home";
 import Lessons from "@/views/Lessons";
 import Profile from "@/views/Profile";
-import Message from "@/views/Message";
+// import Message from "@/views/Message";
 
 import Login from "@/views/Login";
 import Registration from "@/views/Registration";
@@ -33,12 +33,12 @@ const routes = [
     component: Profile,
     meta: { requiresAuth: true }
   },
-  {
-    path: "/message",
-    name: "Message",
-    component: Message,
-    meta: { requiresAuth: true }
-  },
+  // {
+  //   path: "/message",
+  //   name: "Message",
+  //   component: Message,
+  //   meta: { requiresAuth: true }
+  // },
 
   {
     path: "/login",
@@ -51,17 +51,17 @@ const routes = [
     name: "Registration",
     component: Registration,
     meta: { requiresVisitor: true }
-  },
-
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
   }
+
+  // {
+  //   path: "/about",
+  //   name: "About",
+  //   // route level code-splitting
+  //   // this generates a separate chunk (about.[hash].js) for this route
+  //   // which is lazy-loaded when the route is visited.
+  //   component: () =>
+  //     import(/* webpackChunkName: "about" */ "../views/About.vue")
+  // }
 ];
 
 const router = new VueRouter({

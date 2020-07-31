@@ -16,7 +16,7 @@ export default {
     links: [
       { title: "Главная", to: "/", icon: "mdi-home" },
       { title: "Занятия", to: "/lessons", icon: "mdi-book-open-page-variant" },
-      { title: "Сообщения", to: "/message", icon: "mdi-message" },
+      // { title: "Сообщения", to: "/message", icon: "mdi-message" },
       { title: "Профиль", to: "/profile", icon: "mdi-account" }
     ]
   }),

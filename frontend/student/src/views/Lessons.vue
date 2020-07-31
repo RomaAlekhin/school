@@ -1,6 +1,6 @@
 <template>
-  <v-card class="ma-2">
-    <v-skeleton-loader :loading="isLoading" type="list-item">
+  <v-flex class="ma-2">
+    <v-skeleton-loader :loading="isLoading" type="list-item, list-item">
       <v-expansion-panels :value="1">
         <v-expansion-panel v-for="lesson in lessons" :key="lesson.id">
           <v-expansion-panel-header>{{ lesson.date }}</v-expansion-panel-header>
@@ -11,7 +11,7 @@
         </v-expansion-panel>
       </v-expansion-panels>
     </v-skeleton-loader>
-  </v-card>
+  </v-flex>
 </template>
 
 <script>
