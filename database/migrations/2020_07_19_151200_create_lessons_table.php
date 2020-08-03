@@ -16,7 +16,7 @@ class CreateLessonsTable extends Migration
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
             $table->foreignId('group_id')->constrained('groups');
-            $table->date('date')->nullable();
+            $table->dateTime('date');
             $table->text('homework')->nullable();
             $table->timestamps();
         });

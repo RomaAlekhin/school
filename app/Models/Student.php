@@ -12,7 +12,7 @@ class Student extends Model
 
     public function groups()
     {
-        return $this->belongsToMany('App\Models\Group');
+        return $this->belongsToMany('App\Models\Group', 'group_student');
     }
 
     public function getLessonsAttribute()

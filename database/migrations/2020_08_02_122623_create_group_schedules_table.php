@@ -15,8 +15,8 @@ class CreateGroupSchedulesTable extends Migration
     {
         Schema::create('group_schedules', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('day')->nullable();
-            $table->time('time', 0)->nullable();
+            $table->tinyInteger('day');
+            $table->time('time', 0);
             $table->foreignId('group_id')->constrained('groups');
             $table->timestamps();
         });
