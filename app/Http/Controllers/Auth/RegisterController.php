@@ -72,12 +72,15 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $data = $request->all();
-        $data['type'] = null;
 
         if ($request->is('student*')) {
             $data['type'] = 'student';
         } else if ($request->is('teacher*')) {
             $data['type'] = 'teacher';
+        }
+
+        if (empty($data['type'])) {
+            $data['type'] = 'student';
         }
 
         $this->validator($data)->validate();

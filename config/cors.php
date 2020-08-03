@@ -20,6 +20,7 @@ return [
         'student/*',
         'teacher/*',
         'admin/*',
+        'main/*',
         'sanctum/csrf-cookie'
     ],
 

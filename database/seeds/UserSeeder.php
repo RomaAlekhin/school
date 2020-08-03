@@ -14,5 +14,8 @@ class UserSeeder extends Seeder
     {
         factory(User::class, 50)->states('student')->create();
         factory(User::class, 15)->states('teacher')->create();
+
+        factory(User::class, 1)->states('student', 'student_test')->create();
+        factory(User::class, 1)->states('teacher', 'teacher_test')->create();
     }
 }

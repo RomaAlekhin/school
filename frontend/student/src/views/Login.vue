@@ -86,13 +86,28 @@ export default {
       try {
         await this.signIn(this.form);
         this.isLoading = false;
-        this.$router.push({ name: "Lessons" });
+        this.redirectToApp();
       } catch (error) {
         this.isLoading = false;
         const errors = error.response.data.errors;
         const key = Object.keys(errors)[0];
         this.errorMessage = errors[key][0];
       }
+    },
+
+    redirectToApp() {
+      if (!this.user) {
+        this.$router.push({ name: "Home" });
+      }
+
+      const type = this.user.type;
+      if (type === "student") {
+        this.$router.push({ name: "Lessons" });
+        return false;
+      }
+
+      const { protocol, hostname } = window.location;
+      window.location.href = `${protocol}//${type}.${hostname}`;
     }
   }
 };

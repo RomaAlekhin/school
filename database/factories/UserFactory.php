@@ -41,6 +41,12 @@ $factory->state(App\User::class, 'student', function ($faker) {
     ];
 });
 
+$factory->state(App\User::class, 'student_test', function () {
+    return [
+        'email' => "student@example.com",
+    ];
+});
+
 $factory->state(App\User::class, 'teacher', function ($faker) {
     $type = 'teacher';
     $class = App\Models\Teacher::class;
@@ -51,5 +57,11 @@ $factory->state(App\User::class, 'teacher', function ($faker) {
         'type' => $type,
         'typeable_type' => $class,
         'typeable_id' => $typeable->id,
+    ];
+});
+
+$factory->state(App\User::class, 'teacher_test', function () {
+    return [
+        'email' => "teacher@example.com",
     ];
 });

@@ -3,9 +3,9 @@
         "serve": "npm run serve:student",
         "build": "npm run build:student",
         "lint": "npm run lint:student",
-        "serve:all": "npm run serve:student && npm run serve:teacher",
-        "build:all": "npm run build:student && npm run build:teacher",
-        "lint:all": "npm run lint:student && npm run lint:teacher",
+        "serve:all": "npm run serve:student && npm run serve:teacher && npm run serve:main",
+        "build:all": "npm run build:student && npm run build:teacher && npm run build:main",
+        "lint:all": "npm run lint:student && npm run lint:teacher && npm run lint:main",
         "serve:student": "cd frontend/student && npm run serve",
         "build:student": "cd frontend/student && npm run build",
         "lint:student": "cd frontend/student && npm run lint",
@@ -14,6 +14,9 @@
         "lint:teacher": "cd frontend/teacher && npm run lint",
         "serve:admin": "cd frontend/admin && npm run serve",
         "build:admin": "cd frontend/admin && npm run build",
-        "lint:admin": "cd frontend/admin && npm run lint"
+        "lint:admin": "cd frontend/admin && npm run lint",
+        "serve:main": "cd frontend/main && npm run serve",
+        "build:main": "cd frontend/main && npm run build",
+        "lint:main": "cd frontend/main && npm run lint"
     }
 }

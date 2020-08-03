@@ -17,10 +17,10 @@ Route::get('check_auth', function () {
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
-	Route::get('lesson', 'App\LessonController@index');
-	Route::get('lesson/{id}', 'App\LessonController@show');
+	// Route::get('lesson', 'App\LessonController@index');
+	// Route::get('lesson/{id}', 'App\LessonController@show');
 
-	Route::get('me', 'App\UserController@me');
-	Route::get('user', 'App\UserController@index');
-	Route::get('user/{id}', 'App\UserController@show');
+	// Route::get('me', 'App\UserController@me');
+	// Route::get('user', 'App\UserController@index');
+	// Route::get('user/{id}', 'App\UserController@show');
 });

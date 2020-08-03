@@ -54,6 +54,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapTeacherRoutes();
 
+        $this->mapMainRoutes();
+
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
@@ -114,5 +116,18 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/teacher.php'));
+    }
+
+    /**
+     * Define the "main" routes for the teacher application.
+     *
+     * @return void
+     */
+    protected function mapMainRoutes()
+    {
+        Route::prefix('main')
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/main.php'));
     }
 }

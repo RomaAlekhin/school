@@ -29,4 +29,9 @@ class SpaController extends Controller
     {
         return view('admin');
     }
+
+    public function main()
+    {
+        return view('main');
+    }
 }
