@@ -18,7 +18,6 @@ class CreateLessonsTable extends Migration
             $table->foreignId('group_id')->constrained('groups');
             $table->dateTime('date');
             $table->text('homework')->nullable();
-            $table->timestamps();
         });
     }
 

@@ -84,7 +84,11 @@ router.beforeEach((to, from, next) => {
     }
   } else if (to.matched.some(record => record.meta.requiresVisitor)) {
     if (isAuthenticated) {
-      next({ name: from.name });
+      if (!from.name) {
+        next({ name: "Home" });
+      } else {
+        next({ name: from.name });
+      }
     } else {
       next();
     }

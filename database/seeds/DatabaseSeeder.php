@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\CreateLessons;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,11 +12,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         $this->call([
             UserSeeder::class,
             GroupSeeder::class,
             GroupScheduleSeeder::class,
-            // LessonSeeder::class,
+            StatusSeeder::class,
+        ]);
+
+        CreateLessons::dispatch();
+
+        $this->call([
+            // UserSeeder::class,
+            // GroupSeeder::class,
+            // GroupScheduleSeeder::class,
+            // StatusSeeder::class,
+            StudentLessonSeeder::class,
         ]);
     }
 }

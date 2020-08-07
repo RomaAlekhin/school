@@ -17,8 +17,8 @@ Route::get('check_auth', function () {
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
-	// Route::get('lesson', 'Student\LessonController@index');
-	// Route::get('lesson/{id}', 'Student\LessonController@show');
+	Route::get('lessons', 'Student\LessonController@index');
+	Route::get('lessons/{id}', 'Student\LessonController@show');
 
 	Route::get('me', 'Student\UserController@me');
 	Route::get('profile', 'Student\UserController@profile');

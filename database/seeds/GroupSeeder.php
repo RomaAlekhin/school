@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\Group;
-use App\Models\GroupStudent;
 use App\Models\Student;
 use Illuminate\Database\Seeder;
 
@@ -27,6 +26,6 @@ class GroupSeeder extends Seeder
 
                 // attach list of IDs to group
                 $group->students()->syncWithoutDetaching($studentIds);
-            });;
+            });
     }
 }

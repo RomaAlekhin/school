@@ -57,10 +57,13 @@ export default {
       return dispatch("me");
     },
 
-    checkAuth({ commit }) {
+    checkAuth({ dispatch, commit }) {
       return axios
         .get("check_auth")
-        .then(() => {})
+        .then(() => {
+          commit("SET_AUTHENTICATED", true);
+          dispatch("me");
+        })
         .catch(() => {
           commit("SET_AUTHENTICATED", false);
           commit("SET_USER", null);

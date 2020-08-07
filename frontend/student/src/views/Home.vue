@@ -13,8 +13,12 @@ export default {
       return this.$store.state.auth.isAuthenticated;
     },
 
+    user() {
+      return this.$store.state.auth.user;
+    },
+
     userEmail() {
-      return this.$store.state.auth.user.email;
+      return (this.user && this.user.email) || "";
     }
   }
 };

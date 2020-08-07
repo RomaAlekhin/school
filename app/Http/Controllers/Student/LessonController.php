@@ -16,15 +16,30 @@ class LessonController extends Controller
     public function index()
     {
         $groups = Auth::user()->typeable->groups;
-        $lessons = collect();
+        if (!$groups) return [];
 
-        if (!empty($groups)) {
-            foreach ($groups as $group) {
-                $lessons = $lessons->merge($group->lessons);
-            }
-        };
+        // $allLessons = [];
+        // foreach ($groups as $group) {
+        //     $lessons = $group->lessons;
+        //     if (!$lessons) continue;
 
-        return $lessons->sortBy('date')->slice(-2);
+        //     foreach ($lessons as $lesson) {
+        //         $allLessons[] = [
+        //             'id' => $lesson->id,
+        //             'date' => $lesson->date,
+        //         ];
+        //     }
+        // }
+
+        return Auth::user()->typeable->historyLessons;
+        // $allLessons = collect();
+        // if (!empty($groups)) {
+        //     foreach ($groups as $group) {
+        //         $allLessons = $allLessons->merge($group->historyLessons);
+        //     }
+        // };
+
+        // return $allLessons;
     }
 
     /**

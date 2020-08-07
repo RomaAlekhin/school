@@ -15,6 +15,11 @@ class Student extends Model
         return $this->belongsToMany('App\Models\Group', 'group_student');
     }
 
+    public function historyLessons()
+    {
+        return $this->belongsToMany('App\Models\Lesson', 'student_lesson');
+    }
+
     public function getLessonsAttribute()
     {
         $groups = $this->groups;

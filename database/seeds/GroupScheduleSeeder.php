@@ -2,7 +2,6 @@
 
 use App\Models\GroupSchedule;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class GroupScheduleSeeder extends Seeder
 {
