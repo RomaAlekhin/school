@@ -21,7 +21,7 @@ class GroupSeeder extends Seeder
             ->each(function (Group $group) {
 
                 // get list of random students
-                $students = Student::inRandomOrder()->limit(random_int(1, 5))->get();
+                $students = Student::inRandomOrder()->limit(random_int(1, 2))->get();
                 $studentIds = $students->pluck('id');
 
                 // attach list of IDs to group

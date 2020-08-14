@@ -8,7 +8,8 @@ class Group extends Model
 {
     public function teacher()
     {
-        return $this->hasOne('App\Models\Teacher');
+        return $this->belongsTo('App\Models\Teacher');
+        // return $this->hasOne('App\Models\Teacher');
     }
 
     public function students()

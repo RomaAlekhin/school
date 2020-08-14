@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Lesson;
 use App\User;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,7 @@ class RouteServiceProvider extends ServiceProvider
     private function bindModels()
     {
         Route::model('user_id', User::class);
+        Route::model('lesson_id', Lesson::class);
     }
 
     /**

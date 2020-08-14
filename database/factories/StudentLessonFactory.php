@@ -13,9 +13,9 @@ $factory->define(StudentLesson::class, function (Faker $faker) {
     return [
         'status_id' => Status::query()->inRandomOrder()->first()->id,
 
-        'behaviour' => $faker->numberBetween(0, 10),
-        'activity' => $faker->numberBetween(0, 10),
-        'homework' => $faker->numberBetween(0, 10),
-        'knowledge' => $faker->numberBetween(0, 10),
+        'mark_behaviour' => $faker->numberBetween(0, 10),
+        'mark_activity' => $faker->numberBetween(0, 10),
+        'mark_homework' => $faker->numberBetween(0, 10),
+        'mark_knowledge' => $faker->numberBetween(0, 10),
     ];
 });

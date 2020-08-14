@@ -10,6 +10,11 @@ class Teacher extends Model
 
     protected $hidden = ['id', 'created_at', 'updated_at'];
 
+    public function user()
+    {
+        return $this->morphOne('App\User', 'typeable');
+    }
+
     public function groups()
     {
         return $this->hasMany('App\Models\Group');

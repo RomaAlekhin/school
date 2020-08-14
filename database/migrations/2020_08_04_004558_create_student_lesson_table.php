@@ -28,10 +28,10 @@ class CreateStudentLessonTable extends Migration
 
             $table->foreign('status_id')->references('id')->on('statuses');
 
-            $table->tinyInteger('behaviour')->nullable();
-            $table->tinyInteger('activity')->nullable();
-            $table->tinyInteger('homework')->nullable();
-            $table->tinyInteger('knowledge')->nullable();
+            $table->tinyInteger('mark_behaviour')->nullable();
+            $table->tinyInteger('mark_activity')->nullable();
+            $table->tinyInteger('mark_homework')->nullable();
+            $table->tinyInteger('mark_knowledge')->nullable();
         });
     }
 

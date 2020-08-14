@@ -20,16 +20,16 @@ class Student extends Model
         return $this->belongsToMany('App\Models\Lesson', 'student_lesson');
     }
 
-    public function getLessonsAttribute()
-    {
-        $groups = $this->groups;
+    // public function getLessonsAttribute()
+    // {
+    //     $groups = $this->groups;
 
-        $lessons = collect();
-        if (!empty($groups)) {
-            foreach ($groups as $group) {
-                $lessons = $lessons->merge($group->lessons);
-            }
-        };
-        return $lessons->sortBy('date')->slice(-2);
-    }
+    //     $lessons = collect();
+    //     if (!empty($groups)) {
+    //         foreach ($groups as $group) {
+    //             $lessons = $lessons->merge($group->lessons);
+    //         }
+    //     };
+    //     return $lessons->sortBy('date')->slice(-2);
+    // }
 }

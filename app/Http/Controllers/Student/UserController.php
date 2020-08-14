@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Student\UserResource;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -18,21 +19,6 @@ class UserController extends Controller
     {
 
         $user = $request->user()->typeable()->with('groups')->get();
-        // $user->setAttribute('lessons', $user->getLessonsAttribute());
-
-        // $user::withoutWrapping();
-        return $user;
-        // UserResource::withoutWrapping();
-        // return new UserResource($request->user());
-    }
-
-    public function index()
-    {
-        return User::all();
-    }
-
-    public function show(Request $request, User $user)
-    {
         return $user;
     }
 }

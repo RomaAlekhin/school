@@ -13,9 +13,7 @@
 </template>
 
 <script>
-// const AppBar = () => import("./components/AppBar");
 import AppBar from "./components/AppBar";
-// const AppBottomNavigation = () => import("./components/AppBottomNavigation");
 import AppBottomNavigation from "./components/AppBottomNavigation";
 
 export default {
@@ -29,21 +27,6 @@ export default {
   computed: {
     isAuthenticated() {
       return this.$store.state.auth.isAuthenticated;
-    }
-  },
-
-  created() {
-    this.getUsers();
-    this.getUser();
-  },
-
-  methods: {
-    async getUsers() {
-      await axios.get("user");
-    },
-
-    async getUser() {
-      await axios.get("user/2");
     }
   }
 };

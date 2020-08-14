@@ -18,7 +18,6 @@ class CreateGroupSchedulesTable extends Migration
             $table->tinyInteger('day');
             $table->time('time', 0);
             $table->foreignId('group_id')->constrained('groups');
-            $table->timestamps();
         });
     }
 

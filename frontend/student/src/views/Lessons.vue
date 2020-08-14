@@ -39,7 +39,7 @@ export default {
       this.isLoading = true;
 
       try {
-        const response = await axios.get("lesson");
+        const response = await axios.get("lessons");
         this.lessons = response.data;
         this.isLoading = false;
       } catch (error) {

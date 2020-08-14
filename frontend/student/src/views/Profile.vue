@@ -24,6 +24,9 @@
       <v-card-title>Title</v-card-title>
       <v-card-text>Card Text</v-card-text>
     </v-skeleton-loader>
+    <pre>
+      <!-- {{ profile }} -->
+    </pre>
   </v-flex>
 </template>
 
