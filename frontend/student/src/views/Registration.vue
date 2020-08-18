@@ -85,7 +85,7 @@
 import { mapActions } from "vuex";
 
 export default {
-  name: "Registration",
+  name: "RegistrationView",
 
   data: () => ({
     errorMessage: "",

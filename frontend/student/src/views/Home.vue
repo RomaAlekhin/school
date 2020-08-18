@@ -1,7 +1,7 @@
 <template>
   <v-flex>
     <v-card justify="center" class="my-1" v-if="false">
-      <v-card-title>Расписание</v-card-title>
+      <!-- <v-card-title>Расписание</v-card-title> -->
       <v-date-picker
         v-model="schedule"
         no-title
@@ -23,7 +23,7 @@
 import Groups from "@/components/Group/Groups";
 
 export default {
-  name: "Home",
+  name: "HomeView",
 
   components: {
     Groups

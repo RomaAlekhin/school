@@ -23,7 +23,7 @@ class LessonController extends Controller
             'mark_homework',
             'mark_knowledge',
         ];
-        $lessons = $student->historyLessons()->orderBy('date')->take(5)->withPivot($pivotFields)->get();
+        $lessons = $student->historyLessons()->orderBy('date', 'desc')->take(5)->withPivot($pivotFields)->get();
         return LessonResource::collection($lessons);
     }
 }

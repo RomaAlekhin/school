@@ -21,6 +21,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 	Route::get('profile', 'Student\UserController@profile');
 	Route::get('lessons', 'Student\LessonController@index');
 	Route::get('groups', 'Student\GroupController@index');
+	Route::get('catalogs', 'CatalogController@index');
 	// Route::get('teachers', 'Student\TeacherController@index');
 
 	// Route::get('lessons/{id}', 'Student\LessonController@show');

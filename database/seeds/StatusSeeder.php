@@ -17,5 +17,6 @@ class StatusSeeder extends Seeder
             ['name' => 'Оплачиваемый пропуск'],
             ['name' => 'Неоплачиваемый пропуск'],
         ]);
+        DB::table('catalogs')->insert(['name' => 'statuses', 'description' => 'Статус посещения']);
     }
 }

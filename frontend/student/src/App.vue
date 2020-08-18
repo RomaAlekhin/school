@@ -16,6 +16,8 @@
 import AppBar from "./components/AppBar";
 import AppBottomNavigation from "./components/AppBottomNavigation";
 
+import { mapActions } from "vuex";
+
 export default {
   name: "App",
 
@@ -28,6 +30,16 @@ export default {
     isAuthenticated() {
       return this.$store.state.auth.isAuthenticated;
     }
+  },
+
+  created() {
+    this.loadCatalogs();
+  },
+
+  methods: {
+    ...mapActions({
+      loadCatalogs: "catalog/loadCatalogs"
+    })
   }
 };
 </script>

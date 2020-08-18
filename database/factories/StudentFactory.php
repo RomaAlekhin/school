@@ -7,7 +7,10 @@ use Faker\Generator as Faker;
 
 $factory->define(Student::class, function (Faker $faker) {
     return [
-        'age' => $faker->numberBetween(4, 14),
+        'birth_date' => $faker->date,
+        'phone' => $faker->tollFreePhoneNumber,
         'parent_name' => $faker->name,
+        'parent_phone' => $faker->tollFreePhoneNumber,
+        'parent_email' => $faker->email,
     ];
 });

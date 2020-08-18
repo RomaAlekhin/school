@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { getDayText } from "@/utils";
+
 export default {
   name: "GroupSchedule",
 
@@ -26,17 +28,7 @@ export default {
     }
   },
 
-  data: () => ({
-    days: [
-      "Воскресенье",
-      "Понедельник",
-      "Вторник",
-      "Среда",
-      "Четверг",
-      "Пятница",
-      "Суббота"
-    ]
-  }),
+  data: () => ({}),
 
   computed: {
     filteredSchedules() {
@@ -47,7 +39,7 @@ export default {
   methods: {
     getScheduleText(schedule = {}) {
       const { day = 0, time = "" } = schedule;
-      const dayText = this.days[day];
+      const dayText = getDayText(day);
       const timeText = time.slice(0, 5);
 
       return `${dayText} в ${timeText}`;

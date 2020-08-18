@@ -1,12 +1,12 @@
 <template>
   <v-flex class="ma-2">
     <v-skeleton-loader :loading="isLoading" type="list-item, list-item">
-      <v-expansion-panels :value="1">
-        <v-expansion-panel v-for="lesson in lessons" :key="lesson.id">
+      <v-expansion-panels :value="activeLessonIndex">
+        <v-expansion-panel v-for="lesson in filteredLessons" :key="lesson.id">
           <v-expansion-panel-header>{{ lesson.date }}</v-expansion-panel-header>
 
           <v-expansion-panel-content>
-            <LessonsHomework :lesson="lesson" />
+            <lesson :lesson="lesson" />
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -15,20 +15,34 @@
 </template>
 
 <script>
-import LessonsHomework from "@/components/LessonsHomework";
+import { getDayText } from "@/utils";
+
+// import Lessons from "@/components/Lesson/Lessons";
+import Lesson from "@/components/Lesson/Lesson";
 
 export default {
-  name: "Lessons",
+  name: "LessonsView",
 
   components: {
-    LessonsHomework
+    // Lessons
+    Lesson
   },
 
   data: () => ({
     lessons: [],
     currentLesson: null,
+    activeLessonIndex: 0,
     isLoading: false
   }),
+
+  computed: {
+    filteredLessons() {
+      return this.lessons.map(lesson => {
+        lesson.date = this.formatLessonDate(lesson.date);
+        return lesson;
+      });
+    }
+  },
 
   created() {
     this.setLoadedLessons();
@@ -40,11 +54,31 @@ export default {
 
       try {
         const response = await axios.get("lessons");
-        this.lessons = response.data;
+        const data = response.data;
+        this.lessons = data && data.data;
+        this.setActiveLesson();
         this.isLoading = false;
       } catch (error) {
         this.isLoading = false;
       }
+    },
+
+    formatLessonDate(dateText = "") {
+      const DATE = new Date(dateText);
+      const localeDate = DATE.toLocaleDateString();
+      const time = DATE.toLocaleTimeString().slice(0, 5);
+      const day = "(" + getDayText(DATE.getDay()) + ")";
+
+      return [localeDate, time, day].join(" ");
+    },
+
+    setActiveLesson() {
+      const NOW = new Date();
+      const filterPastLessons = lesson => new Date(lesson.date) > NOW;
+      const countFutureLessons = this.lessons.filter(filterPastLessons).length;
+      if (countFutureLessons <= 0) return 0;
+
+      this.activeLessonIndex = countFutureLessons - 1;
     }
   }
 };

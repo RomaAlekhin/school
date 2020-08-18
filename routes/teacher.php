@@ -17,6 +17,7 @@ Route::get('check_auth', function () {
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
+	Route::get('catalogs', 'CatalogController@index');
 	// Route::get('lesson', 'App\LessonController@index');
 	// Route::get('lesson/{id}', 'App\LessonController@show');
 
