@@ -5,5 +5,5 @@
 const axios = require("axios");
 window.axios = axios.create({
   withCredentials: true,
-  baseURL: "http://school.test/student",
+  baseURL: "http://school.test/student"
 });
